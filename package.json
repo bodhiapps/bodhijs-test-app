@@ -11,6 +11,8 @@
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "serve": "NODE_ENV=development npm run build && npx serve -d dist -l 12345",
+    "serve:local": "NODE_ENV=development npm run build && python3 -m http.server -d dist 12345",
+    "build:local": "NODE_ENV=development npm run build",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
