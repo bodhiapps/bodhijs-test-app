@@ -14,11 +14,19 @@ The deployment workflow (`.github/workflows/deploy.yml`) will automatically:
 
 ### 1. Enable GitHub Pages
 
+**IMPORTANT**: Follow these steps exactly to avoid the "Not Found" error:
+
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section in the left sidebar
-4. Under **Source**, select **GitHub Actions**
+4. Under **Source**, select **GitHub Actions** (not "Deploy from a branch")
 5. Save the configuration
+6. **Wait 2-3 minutes** for GitHub to process the Pages enablement
+
+**If you get "Get Pages site failed" error:**
+- The workflow has been updated with `enablement: true` to automatically enable Pages
+- Make sure your repository is public (GitHub Pages requires public repos for free accounts)
+- Ensure you have admin access to the repository
 
 ### 2. Repository Settings
 
@@ -71,10 +79,34 @@ Replace `[your-username]` with your GitHub username.
 
 ## Troubleshooting
 
-1. **Build fails**: Check the Actions tab for detailed error logs
-2. **404 errors**: Verify the base path in `vite.config.ts` matches your repository name
-3. **Pages not updating**: Check if GitHub Pages is enabled and source is set to "GitHub Actions"
-4. **Permission errors**: Ensure the repository has Pages enabled and Actions have write permissions
+### Common GitHub Pages Errors
+
+1. **"Get Pages site failed. Please verify that the repository has Pages enabled"**
+   - Go to Settings → Pages and select "GitHub Actions" as source
+   - Make sure repository is public (required for free GitHub accounts)
+   - Wait 2-3 minutes after enabling Pages before pushing
+   - The workflow now includes `enablement: true` to auto-enable Pages
+
+2. **"HttpError: Not Found"**
+   - Repository must be public for GitHub Pages (unless you have GitHub Pro)
+   - Ensure you have admin/write permissions to the repository
+   - Check that the repository name matches the base path in `vite.config.ts`
+
+3. **Build fails**: 
+   - Check the Actions tab for detailed error logs
+   - ESLint errors have been fixed for the build scripts
+
+4. **404 errors on deployed site**: 
+   - Verify the base path in `vite.config.ts` matches your repository name
+   - Current setting: `/bodhijs-test-app/` - change if your repo has a different name
+
+5. **Pages not updating**: 
+   - Check if GitHub Pages is enabled and source is set to "GitHub Actions"
+   - Clear browser cache or try incognito mode
+
+6. **Permission errors**: 
+   - Ensure the repository has Pages enabled and Actions have write permissions
+   - Check that GITHUB_TOKEN has pages: write permissions (automatically set in workflow)
 
 ## Environment Variables
 
