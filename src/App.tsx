@@ -4,8 +4,11 @@ import CallbackPage from '@/pages/CallbackPage';
 import ApiTestPage from '@/pages/ApiTestPage';
 
 function App() {
+  // Get the base name from the environment - matches the vite base config
+  const basename = import.meta.env.MODE === 'production' ? '/bodhijs-test-app' : '';
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="App" style={{ padding: '2rem', textAlign: 'center' }}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
