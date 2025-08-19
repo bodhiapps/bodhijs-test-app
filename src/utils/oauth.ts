@@ -13,7 +13,7 @@ import { BodhiExtClient } from '@bodhiapp/bodhijs';
 const APP_CLIENT_ID = 'app-a05c53c5-3fc4-409d-833d-f4acc90e1611';
 const BODHI_AUTH_URL = 'https://main-id.getbodhi.app';
 const AUTH_REALM = 'bodhi';
-const REDIRECT_URI = `${window.location.origin}/callback`;
+const REDIRECT_URI = `${window.location.origin}/bodhijs-test-app/callback`;
 
 // Storage keys
 const STORAGE_KEYS = {
