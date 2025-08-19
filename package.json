@@ -7,13 +7,10 @@
     "clean": "rimraf dist",
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:only": "tsc && vite build",
-    "build:fast-direct": "npm run build:only",
-    "build:fast": "node ./scripts/build-fast.mjs bodhijs-test-app 'npm run build:fast-direct' src index.html package.json tsconfig.json vite.config.ts ../../src",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "serve": "NODE_ENV=development npm run build:fast && npx serve -d dist -l 12345",
+    "serve": "NODE_ENV=development npm run build && npx serve -d dist -l 12345",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
